@@ -3,7 +3,8 @@ pragma solidity >=0.5.10 <0.9.0;
 
 contract UserStorage {
 
-  mapping(uint => Profile) profiles;
+  // Add "public":
+  mapping(uint => Profile) public profiles;
 
   struct Profile {
     uint id;
@@ -19,5 +20,7 @@ contract UserStorage {
 
     return latestUserId;
   }
+  
+  // Remove the "getUserFromId" function
 
 }
