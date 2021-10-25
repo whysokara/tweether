@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.5.10 <0.9.0;
 
-contract UserStorage {
+import '../helpers/BaseStorage.sol';
 
-  // Add "public":
-  mapping(uint => Profile) public profiles;
+contract UserStorage is BaseStorage {
+
+  mapping(uint => Profile) profiles;
 
   struct Profile {
     uint id;
@@ -12,15 +13,13 @@ contract UserStorage {
   }
 
   uint latestUserId = 0;
-  
-  function createUser(bytes32 _username) public returns(uint) {
+
+  function createUser(bytes32 _username) public onlyController returns(uint) {
     latestUserId++;  
 
     profiles[latestUserId] = Profile(latestUserId, _username);
 
     return latestUserId;
   }
-  
-  // Remove the "getUserFromId" function
 
 }
